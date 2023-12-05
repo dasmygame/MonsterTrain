@@ -2,7 +2,7 @@
 #include "XNucleo53L0A1.h"
 #include <stdio.h>
 Serial pc(USBTX,USBRX);
-DigitalOut shdn(p26);
+DigitalOut shdn(p8);
 DigitalOut myled1(LED1);
 // This VL53L0X board test application performs a range measurement in polling mode
 // Use 3.3(Vout) for Vin, p28 for SDA, p27 for SCL, P26 for shdn on mbed LPC1768
