@@ -1,6 +1,5 @@
 #include "SDFileSystem.h"
 #include "mbed.h"
-#include "mbed2/168/PinNames.h"
 #include "rtos.h"
 #include "wave_player.h"
 #include "uLCD_4DGL.h"
