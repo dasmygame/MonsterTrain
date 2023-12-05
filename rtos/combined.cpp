@@ -1,5 +1,6 @@
 #include "SDFileSystem.h"
 #include "mbed.h"
+//#include "mbed2/168/PinNames.h"
 #include "rtos.h"
 #include "wave_player.h"
 #include "uLCD_4DGL.h"
@@ -11,7 +12,7 @@
 #define VL53L0_I2C_SCL   p27
 
 SDFileSystem sd(p5, p6, p7, p8, "sd"); // SD card
-//printf("init\n");
+//pc.printf("init\n");
 Motor m1(p23, p16, p17); // pwm, fwd, rev
 Motor m2(p24, p19, p20); // pwm, fwd, rev
 AnalogOut DACout(p18);
@@ -29,6 +30,7 @@ DigitalOut myled1(LED1);
 char bnum = '0';
 char bhit = '0';
 void motors(void const *args) {
+    printf("Motors");
     while (1) {
         if (blue.readable()) {
             if (blue.getc() == '!') {
@@ -99,41 +101,14 @@ void motors(void const *args) {
 //   }
 // }
 // Mutex uLCD_mutex;
-Semaphore uLCD_semaphore(1);
+//Semaphore uLCD_semaphore(1);
  uLCD_4DGL uLCD(p9,p10,p11);
 
 
 
-void ulcd(void const *args) {
-    while (true) {
-        uLCD_semaphore.wait();
-        uLCD.filled_rectangle(0, 64, 127, 127, WHITE);  // Fill bottom half with red
-        uLCD_semaphore.release();
-        Thread::wait(500);  // Wait for 500 milliseconds
-        
 
-        uLCD_semaphore.wait();
-        uLCD.filled_rectangle(0, 64, 127, 127, BLUE);  // Fill bottom half with blue
-         uLCD_semaphore.release();
-        Thread::wait(500);  // Wait for 500 milliseconds
-       
-    }
-}
-void fileRead(void const *args) {
-    FILE *wave_file;
-    printf("\r\n\nHello, wave world!\n\r");
-    Thread::wait(500);
-    wave_file=fopen("/sd/Carol of the Bells - Trans-Siberian Orchestra - Higher Quality.wav","r");
-    if (wave_file == NULL)
-        printf("file open error!\n\n\r");
-    printf("playing\n");
-    waver.play(wave_file);
-    printf("closing\n");
-    fclose(wave_file);
-    printf("done");
-    Thread::wait(500);
-}
 void distSensor(void const *args) {
+    pc.printf("dist sensor\n");
     int status;
     uint32_t distance;
     DevI2C *device_i2c = new DevI2C(VL53L0_I2C_SDA, VL53L0_I2C_SCL);
@@ -169,13 +144,25 @@ void distSensor(void const *args) {
     }
 }
 int main() {
+    pc.printf("main\n");
     uLCD.baudrate(3000000);
-    printf("starting t1\n");
-    Thread t1(fileRead);
-    printf("starting t2\n");
+    pc.printf("starting t1\n");
+    //Thread t1(fileRead);
+    pc.printf("starting t2\n");
     Thread t2(distSensor);
-    Thread t3(motors);
+    //Thread t3(motors);
     while (1) {
+        FILE *wave_file;
+        pc.printf("\r\n\nHello, wave world!\n\r");
+        Thread::wait(500);
+        wave_file=fopen("/sd/Carol of the Bells - Trans-Siberian Orchestra - Higher Quality.wav","r");
+        if (wave_file == NULL)
+            pc.printf("file open error!\n\n\r");
+        pc.printf("playing\n");
+        waver.play(wave_file);
+        pc.printf("closing\n");
+        fclose(wave_file);
+        pc.printf("done");
         Thread::wait(500);
     }
 }
