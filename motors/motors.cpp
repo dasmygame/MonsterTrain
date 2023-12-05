@@ -3,6 +3,9 @@
 #include "Motor.h"
 #include <stdio.h>
 
+Motor m1(p23, p9, p10); // pwm, fwd, rev (left motor)
+Motor m2(p24, p11, p12); // pwm, fwd, rev (right motor)
+RawSerial blue(p13,p14);
 void motors(void const *args) {
     while (1) {
         if (blue.readable()) {
