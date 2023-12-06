@@ -1,6 +1,5 @@
 #include "SDFileSystem.h"
 #include "mbed.h"
-//#include "mbed2/168/PinNames.h"
 #include "rtos.h"
 #include "wave_player.h"
 #include "uLCD_4DGL.h"
@@ -12,15 +11,12 @@
 #define VL53L0_I2C_SCL   p27
 
 SDFileSystem sd(p5, p6, p7, p8, "sd"); // SD card
-//pc.printf("init\n");
 Motor m1(p23, p16, p17); // pwm, fwd, rev
 Motor m2(p24, p19, p20); // pwm, fwd, rev
 AnalogOut DACout(p18);
 RawSerial blue(p13,p14);
 wave_player waver(&DACout);
-// PwmOut red(p21);
-// PwmOut green(p22);
-// PwmOut blue(p23);
+
 int LEDActive = 1;
 int uLCDActive = 1;
 static XNucleo53L0A1 *board=NULL;
@@ -34,11 +30,11 @@ void motors(void const *args) {
     while (1) {
         if (blue.readable()) {
             if (blue.getc() == '!') {
-                if (blue.getc() == 'B') { // button data packet
-                    bnum = blue.getc(); // button number
-                    bhit = blue.getc(); // 1=hit, 0=release
+                if (blue.getc() == 'B') { 
+                    bnum = blue.getc(); 
+                    bhit = blue.getc(); 
                     switch (bnum) {
-                    case '5': // button 5 up arrow
+                    case '5': 
                         if (bhit == '1') {
                             m1.speed(1.0);
                             m2.speed(1.0);
@@ -48,7 +44,7 @@ void motors(void const *args) {
                             m2.speed(0.0);
                         }
                         break;
-                    case '7': // button 7 left arrow
+                    case '7': 
                         if (bhit == '1') {
                             m1.speed(0.0);
                             m2.speed(1.0);
@@ -58,7 +54,7 @@ void motors(void const *args) {
                             m2.speed(0.0);
                         }
                         break;
-                    case '8': // button 8 right arrow
+                    case '8': 
                         if (bhit == '1') {
                             m1.speed(1.0);
                             m2.speed(0.0);
@@ -68,7 +64,7 @@ void motors(void const *args) {
                             m2.speed(0.0);
                         }
                         break;
-                    case '6': // button 8 right arrow
+                    case '6': 
                         if (bhit == '1') {
                             m1.speed(-1.0);
                             m2.speed(-1.0);
@@ -88,25 +84,120 @@ void motors(void const *args) {
     }
  }
 
-// void led2_thread(void const *args) {
-//   while (true) {
-//     printf("starting\n");
-//     for (float i = 0.0; i < 1.0; i += 0.05) {
-//       red = i;
-//       green = i;
-//       blue = i;
-//       wait(0.5);
-//     }
-//     Thread::wait(500);
-//   }
-// }
-// Mutex uLCD_mutex;
-//Semaphore uLCD_semaphore(1);
- uLCD_4DGL uLCD(p9,p10,p11);
+
+uLCD_4DGL uLCD(p9,p10,p11);
+
+volatile bool startStopLight = 0;
+
+//Class to control an RGB LED using three PWM pins
+class RGBLed
+{
+public:
+    RGBLed(PinName redpin, PinName greenpin, PinName bluepin);
+    void write(float red,float green, float blue);
+private:
+    PwmOut _redpin;
+    PwmOut _greenpin;
+    PwmOut _bluepin;
+};
+
+RGBLed::RGBLed (PinName redpin, PinName greenpin, PinName bluepin)
+    : _redpin(redpin), _greenpin(greenpin), _bluepin(bluepin)
+{
+    //50Hz PWM clock default a bit too low, go to 2000Hz (less flicker)
+    _redpin.period(0.0005);
+}
+
+void RGBLed::write(float red,float green, float blue)
+{
+    _redpin = red;
+    _greenpin = green;
+    _bluepin = blue;
+}
 
 
+//Setup RGB led using PWM pins and class
+RGBLed myRGBled(p26,p25,p22); //RGB PWM pins
+PwmOut redLED (p21);
+DigitalOut greenLED (p12);
 
 
+//RGB HELPER FUNCTION
+void updateMoveLight()
+{
+    startStopLight = !startStopLight;
+}
+void RGBThread(void const *args)
+{
+    double starCodes[6][3];
+    // red
+    starCodes[0][0] = 1.0;
+    starCodes[0][1] = 0.0;
+    starCodes[0][2] = 0.0;
+    //blue
+    starCodes[1][0] = 0.0;
+    starCodes[1][1] = 1.0;
+    starCodes[1][2] = 0.0;
+    // green
+    starCodes[2][0] = 0.0;
+    starCodes[2][1] = 0.0;
+    starCodes[2][2] = 1.0;
+    //magenta 
+    starCodes[3][0] = 0.81;
+    starCodes[3][1] = 0.92;
+    starCodes[3][2] = 0.94;
+    //Cyan
+    starCodes[4][0] = 0.03;
+    starCodes[4][1] = 0.16;
+    starCodes[4][2] = 0.79;
+    //Yellow
+    starCodes[5][0] = 1.0;
+    starCodes[5][1] = 1.0;
+    starCodes[5][2] = 1.0;
+    while(1)
+    {
+        if (startStopLight) 
+        {
+            greenLED = 0.0;
+            redLED = 1.0;
+        }
+        else
+        {
+            redLED = 0.0;
+            greenLED = 1.0;
+        }
+        for (int i = 0; i < 6; ++i) 
+        {
+            if (startStopLight) 
+            {
+                greenLED = 0.0;
+                redLED = 1.0;
+            }
+            else
+            {
+                redLED = 0.0;
+                greenLED = 1.0;
+            }
+
+            myRGBled.write(starCodes[i][0], starCodes[i][1], starCodes[i][2]);
+            
+            if (startStopLight) 
+            {
+                greenLED = 0.0;
+                redLED = 1.0;
+            }
+            else
+            {
+                redLED = 0.0;
+                greenLED = 1.0;
+            }
+            Thread::wait(150);
+        }
+    }
+}
+
+Ticker flipper;
+Mutex motor_mutex;
 void distSensor(void const *args) {
     pc.printf("dist sensor\n");
     int status;
@@ -129,28 +220,54 @@ void distSensor(void const *args) {
         if (status == VL53L0X_ERROR_NONE) {
             //pc.printf("D=%ld mm\r\n", distance);
             if (distance < 50) {
+                motor_mutex.lock();
                 m1.speed(0);
                 m2.speed(0);
                 pc.printf("Stopped, obstacle detected");
                 wait(200);
-                m1.speed(-1.0); // reverse one sec
+                m1.speed(-1.0); // reverse 1 sec
                 m2.speed(-1.0);
                 wait(1000);
                 m1.speed(0); 
                 m2.speed(0);
+                motor_mutex.unlock();
             }
         }
         Thread::wait(500);
     }
 }
+
+void uLCDThread(void const *args) {
+     uLCD.cls();
+     pc.printf("uLCD init\n");
+     uLCD.media_init();
+
+    // uLCD.printf("\n\nAn SD card is needed for image and video data");
+     uLCD.set_sector_address(0x000, 0x00);
+     uLCD.display_image(0,0);
+     wait(10);
+     //Play video demo
+     while(1) {
+         uLCD.cls();
+         uLCD.media_init();
+         uLCD.set_sector_address(0x00, 0x00);
+         uLCD.display_video(0,0);
+         Thread::wait(500);
+     }
+}
+
 int main() {
     pc.printf("main\n");
     uLCD.baudrate(3000000);
-    pc.printf("starting t1\n");
-    //Thread t1(fileRead);
-    pc.printf("starting t2\n");
+    flipper.attach(&updateMoveLight, 2.0);
+    pc.printf("starting RGB\n");
+    Thread t1(RGBThread);
+    pc.printf("starting distSensor\n");
     Thread t2(distSensor);
-    //Thread t3(motors);
+    pc.printf("starting motors\n");
+    Thread t3(motors);
+    pc.printf("starting uLCD\n");
+    Thread t4(uLCDThread);
     while (1) {
         FILE *wave_file;
         pc.printf("\r\n\nHello, wave world!\n\r");
