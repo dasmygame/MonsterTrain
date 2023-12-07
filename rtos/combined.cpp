@@ -61,8 +61,8 @@ void motors(void const *args) {
                     case '7': 
                         if (bhit == '1') {
                             updateMoveLight();
-                            m1.speed(-0.125);
-                            m2.speed(0.125);
+                            m1.speed(-0.5);
+                            m2.speed(0.5);
                         }
                         else if(bhit == '0') {
                             updateMoveLight();
@@ -73,8 +73,8 @@ void motors(void const *args) {
                     case '8': 
                         if (bhit == '1') {
                             updateMoveLight();
-                            m1.speed(0.125);
-                            m2.speed(-0.125);
+                            m1.speed(0.5);
+                            m2.speed(-0.5);
                         }
                         else if(bhit=='0') {
                             updateMoveLight();
