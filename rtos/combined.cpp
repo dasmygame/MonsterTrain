@@ -13,27 +13,27 @@
 //SDFileSystem sd(p5, p6, p7, p8, "sd"); // SD card
 Motor m1(p23, p16, p17); // pwm, fwd, rev
 Motor m2(p24, p19, p20); // pwm, fwd, rev
-//AnalogOut DACout(p18);
+//AnalogOut DACout(p18); // for sd card waveplayer
 RawSerial blue(p13,p14);
-//wave_player waver(&DACout);
+//wave_player waver(&DACout); // for sd card waveplayer
 DigitalOut myled(LED1);
 DigitalOut myled2(LED2);
 DigitalOut myled3(LED3);
 DigitalOut myled4(LED4);
 int LEDActive = 1;
 int uLCDActive = 1;
-//static XNucleo53L0A1 *board=NULL;
+//static XNucleo53L0A1 *board=NULL; // for lidar
 Serial pc(USBTX,USBRX);
-//DigitalOut shdn(p15);
-//DigitalOut myled1(LED1);
+//DigitalOut shdn(p15); // for lidar
 char bnum = '0';
 char bhit = '0';
 volatile bool startStopLight = false;
-// //RGB HELPER FUNCTION
- void updateMoveLight()
- {
-          startStopLight = !startStopLight;
- }
+
+//RGB HELPER FUNCTION
+void updateMoveLight() {
+    startStopLight = !startStopLight;
+}
+
 void motors(void const *args) {
     myled = 1;
     while (1) {
@@ -211,7 +211,7 @@ void motors(void const *args) {
      }
  }
 
-// Ticker flipper;
+
 // Mutex motor_mutex;
 // void distSensor(void const *args) {
 //     pc.printf("dist sensor\n");
@@ -234,7 +234,7 @@ void motors(void const *args) {
 //         status = board->sensor_centre->get_distance(&distance);
 //         if (status == VL53L0X_ERROR_NONE) {
 //             //pc.printf("D=%ld mm\r\n", distance);
-//             if (distance < 50) {
+//             if (distance < 50) { // ***** this is the code to modify for lidar issues, might need mutex in motors()
 //                 motor_mutex.lock();
 //                 m1.speed(0);
 //                 m2.speed(0);
@@ -273,8 +273,6 @@ void uLCDThread(void const *args) {
 
 int main() {
     pc.printf("main\n");
-    //uLCD.baudrate(3000000);
-    //flipper.attach(&updateMoveLight, 2.0);
     pc.printf("starting RGB\n");
     Thread t1(RGBThread);
     pc.printf("starting distSensor\n");
@@ -284,7 +282,7 @@ int main() {
     pc.printf("starting uLCD\n");
     pc.printf("test print\n");
     Thread t4(uLCDThread);
-    while (1) {
+    while (1) { // music is currently not in a thread, did not work for us in lab 3
         // FILE *wave_file;
         // pc.printf("\r\n\nHello, wave world!\n\r");
         // Thread::wait(500);
