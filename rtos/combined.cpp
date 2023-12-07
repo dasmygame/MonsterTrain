@@ -61,8 +61,8 @@ void motors(void const *args) {
                     case '7': 
                         if (bhit == '1') {
                             updateMoveLight();
-                            m1.speed(-0.5);
-                            m2.speed(0.5);
+                            m1.speed(-0.125);
+                            m2.speed(0.125);
                         }
                         else if(bhit == '0') {
                             updateMoveLight();
@@ -73,8 +73,8 @@ void motors(void const *args) {
                     case '8': 
                         if (bhit == '1') {
                             updateMoveLight();
-                            m1.speed(0.5);
-                            m2.speed(-0.5);
+                            m1.speed(0.125);
+                            m2.speed(-0.125);
                         }
                         else if(bhit=='0') {
                             updateMoveLight();
@@ -105,7 +105,7 @@ void motors(void const *args) {
  }
 
 
-// uLCD_4DGL uLCD(p9,p10,p11);
+ uLCD_4DGL uLCD(p9,p10,p11);
 
  
 
@@ -252,24 +252,24 @@ void motors(void const *args) {
 //     }
 // }
 
-// void uLCDThread(void const *args) {
-//      uLCD.cls();
-//      pc.printf("uLCD init\n");
-//      uLCD.media_init();
+void uLCDThread(void const *args) {
+     uLCD.cls();
+     pc.printf("uLCD init\n");
+     uLCD.media_init();
 
-//     // uLCD.printf("\n\nAn SD card is needed for image and video data");
-//      uLCD.set_sector_address(0x000, 0x00);
-//      uLCD.display_image(0,0);
-//      wait(10);
-//      //Play video demo
-//      while(1) {
-//          uLCD.cls();
-//          uLCD.media_init();
-//          uLCD.set_sector_address(0x00, 0x00);
-//          uLCD.display_video(0,0);
-//          Thread::wait(500);
-//      }
-// }
+    // uLCD.printf("\n\nAn SD card is needed for image and video data");
+     uLCD.set_sector_address(0x000, 0x00);
+     uLCD.display_image(0,0);
+     wait(10);
+     //Play video demo
+     while(1) {
+         uLCD.cls();
+         uLCD.media_init();
+         uLCD.set_sector_address(0x00, 0x00);
+         uLCD.display_video(0,0);
+         Thread::wait(500);
+     }
+}
 
 int main() {
     pc.printf("main\n");
@@ -283,7 +283,7 @@ int main() {
     Thread t3(motors);
     pc.printf("starting uLCD\n");
     pc.printf("test print\n");
-    //Thread t4(uLCDThread);
+    Thread t4(uLCDThread);
     while (1) {
         // FILE *wave_file;
         // pc.printf("\r\n\nHello, wave world!\n\r");
