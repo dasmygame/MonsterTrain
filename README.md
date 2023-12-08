@@ -17,7 +17,7 @@ Feeling inspired by the coming Christmas season (and a little bit of Polar Expre
 <br>We designed and manufactured a custom housing designed to look like a train engine and a vehicle base including suspension. <br>
 
 ## Design of Vehicle Base and Enclosure
-<br><br>- The Train design was split into 2 parts, the drive train and the shell top. Both were designed from scratch in TinkerCad and 3D Printed using PLA.
+<br>- The Train design was split into 2 parts, the drive train and the shell top. Both were designed from scratch in TinkerCad and 3D Printed using PLA.
 ### Drive Train:
 <br>- The drive train of the train features 6 wheel drive with the 2 motors attached to the center wheels, making the MonsterTrain center-wheel drive.
 <br>- 6 Fenders above each wheel to provide reinforcement from drastic wheel differential suspension changes.
