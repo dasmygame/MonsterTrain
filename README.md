@@ -8,11 +8,11 @@ Developed by:
 ## Project Idea
 Feeling inspired by the coming Christmas season (and a little bit of Polar Express), our project is a winter-themed Monster truck-train hybrid: the Monster Train. The Monster Train is a remote controller vehicle that can be piloted over bluetooth user the user's cell phone and has a handful of fun features including:
 <br>
-<br> * Collision detection
-<br> * LED movement indicator
-<br> * LED smokestack effect
-<br> * Train sound effects
-<br> * Fun, themed LCD display
+* Collision detection
+* LED movement indicator
+* LED smokestack effect
+* Train sound effects
+* Fun, themed LCD display
 <br>
 <br> We designed and manufactured a custom housing designed to look like a train engine and a vehicle base including suspension. <br>
 
