@@ -36,7 +36,8 @@ Feeling inspired by the coming Christmas season (and a little bit of Polar Expre
 [![Screenshot-2023-12-05-225640-removebg-preview.png](https://i.postimg.cc/HxRSF49G/Screenshot-2023-12-05-225640-removebg-preview.png)](https://postimg.cc/2bdFZWtT)
 ## Building the Monster Train
 ## Parts List
-<br> - LPC1768 mbed Microcontroller
+<br> 
+- LPC1768 mbed Microcontroller
 <br> - Breadboard
 <br> - Breadboard wires (as needed)
 <br> - Adafruit VL53L0X TOF sensor
