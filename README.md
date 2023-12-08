@@ -1,8 +1,8 @@
 # ECE 4180-B Fall 2023 Final Project
 Developed by:
-Puneet Bansal
-Jordan Beiler
-Rahul Das
+Puneet Bansal,
+Jordan Beiler,
+Rahul Das, &
 Benedict Pursell 
 
 ## Project Idea
