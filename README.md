@@ -47,6 +47,59 @@ The Train design was split into 2 parts, the drive train and the shell top enclo
 * 1 red LED
 * 1 green LED
 * 1 RGB LED
+* NOT DONE
+* FINISH
+
+## Software
+This project makes uses of the mbed RTOS for multi threading support. Each feature is given its own thread.
+### uLCD thread
+```
+void uLCDThread(void const *args) {
+     uLCD.cls();
+     pc.printf("uLCD init\n");
+     uLCD.media_init();
+    // uLCD.printf("\n\nAn SD card is needed for image and video data");
+     uLCD.set_sector_address(0x000, 0x00);
+     uLCD.display_image(0,0);
+     wait(10);
+     //Play video demo
+     while(1) {
+         uLCD.cls();
+         uLCD.media_init();
+         uLCD.set_sector_address(0x00, 0x00);
+         uLCD.display_video(0,0);
+         Thread::wait(500);
+     }
+}
+```
+This thread handles the uLCD display. The displayed gif is stored on a micro SD card which is inserted into the micro SD reader onboard the uLCD. The uLCD library is used to initialize the onboard media and displays the video on a loop.
+
+### Sound effects thread (main)
+# HAVE TO ADD OTHER TWO THREADS TO MAIN TO COMPLETE IT
+```
+int main() {
+    Thread t1(RGBThread);
+    Thread t4(uLCDThread);
+    while (1) { 
+        FILE *wave_file;
+        pc.printf("\r\n\nHello, wave world!\n\r");
+        Thread::wait(500);
+        wave_file=fopen("/sd/trainEffect.wav","r");
+        if (wave_file == NULL)
+            pc.printf("file open error!\n\n\r");
+        pc.printf("playing\n");
+        waver.play(wave_file);
+        pc.printf("closing\n");
+        fclose(wave_file);
+        pc.printf("done");
+        Thread::wait(100);
+    }
+}
+```
+This thread makes use of wave player library to read a .wav file from a second micro SD card inserted into the micro SD reader breakout. Library functions read a specific path and store into a `FILE*` pointer and is played in a loop.
+
+### Motor control thread
+
 
 ## Vehicle Base and Enclosure Video Demo
 
