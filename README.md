@@ -1,9 +1,9 @@
 # ECE 4180-B Fall 2023 Final Project
 Developed by:
-Puneet Bansal,
-Jordan Beiler,
-Rahul Das, &
-Benedict Pursell 
+<br> Puneet Bansal,
+<br> Jordan Beiler,
+<br> Rahul Das, &
+<br> Benedict Pursell 
 
 ## Project Idea
 Feeling inspired by the coming Christmas season (and a little bit of Polar Express), our project is a winter-themed Monster truck-train hybrid: the Monster Train. The Monster Train is a remote controller vehicle that can be piloted over bluetooth user the user's cell phone and has a handful of fun features including:
@@ -36,17 +36,17 @@ Feeling inspired by the coming Christmas season (and a little bit of Polar Expre
 [![Screenshot-2023-12-05-225640-removebg-preview.png](https://i.postimg.cc/HxRSF49G/Screenshot-2023-12-05-225640-removebg-preview.png)](https://postimg.cc/2bdFZWtT)
 ## Building the Monster Train
 ## Parts List
-~ LPC1768 mbed Microcontroller
-~ Breadboard
-~ Breadboard wires (as needed)
-~ Adafruit VL53L0X TOF sensor
-~ 2x hobby DC motors
-~ 6x 65mm hobby wheels
-~ 2x battery mount for 4 (each) AA batteries
-~ 8x AA batteries
-~ 1 red LED
-~ 1 green LED
-~ 1 RGB LED
+<br> - LPC1768 mbed Microcontroller
+<br> - Breadboard
+<br> - Breadboard wires (as needed)
+<br> - Adafruit VL53L0X TOF sensor
+<br> - 2x hobby DC motors
+<br> - 6x 65mm hobby wheels
+<br> - 2x battery mount for 4 (each) AA batteries
+<br> - 8x AA batteries
+<br> - 1 red LED
+<br> - 1 green LED
+<br> - 1 RGB LED
 
 ## Vehicle Base and Enclosure
 Include here 3d model files and any specific settings needed for the print, not much needed here
