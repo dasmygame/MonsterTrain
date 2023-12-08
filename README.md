@@ -20,7 +20,8 @@ Feeling inspired by the coming Christmas season (and a little bit of Polar Expre
 - The Train design was split into 2 parts, the drive train and the shell top enclosure. Both were designed from scratch in TinkerCad and 3D Printed using PLA.
 ### Drive Train:
 - The drive train of the train features 6 wheel drive with the 2 motors attached to the center wheels, making the MonsterTrain center-wheel drive.
-<br> - 6 Fenders above each wheel to provide reinforcement from drastic wheel differential suspension changes.
+<br>
+- 6 Fenders above each wheel to provide reinforcement from drastic wheel differential suspension changes.
 <br> - Suspension was designed and made using a hinge, a spring, and a spring slot holder. This gives feedback and tension for grip when going up elevated surfaces or over obstacles.
 <br> - Suspension is loose on non-drive wheels and very tight on center-drive wheel so the vehicle and go in reverse.
 <br> - Turning is supported by reverse motion in wheel opposite to turning direction.
