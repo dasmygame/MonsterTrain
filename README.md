@@ -14,14 +14,13 @@ Feeling inspired by the coming Christmas season (and a little bit of Polar Expre
 <br>~ Train sound effects
 <br>~ Fun, themed LCD display
 <br>
-<br>We designed and manufactured a custom housing designed to look like a train engine and a vehicle base including suspension. <br>
+<br> We designed and manufactured a custom housing designed to look like a train engine and a vehicle base including suspension. <br>
 
 ## Design of Vehicle Base Drive Train and Enclosure
 - The Train design was split into 2 parts, the drive train and the shell top enclosure. Both were designed from scratch in TinkerCad and 3D Printed using PLA.
 ### Drive Train:
-- The drive train of the train features 6 wheel drive with the 2 motors attached to the center wheels, making the MonsterTrain center-wheel drive.
-<br>
-- 6 Fenders above each wheel to provide reinforcement from drastic wheel differential suspension changes.
+<br>- The drive train of the train features 6 wheel drive with the 2 motors attached to the center wheels, making the MonsterTrain center-wheel drive.
+<br>- 6 Fenders above each wheel to provide reinforcement from drastic wheel differential suspension changes.
 <br> - Suspension was designed and made using a hinge, a spring, and a spring slot holder. This gives feedback and tension for grip when going up elevated surfaces or over obstacles.
 <br> - Suspension is loose on non-drive wheels and very tight on center-drive wheel so the vehicle and go in reverse.
 <br> - Turning is supported by reverse motion in wheel opposite to turning direction.
@@ -37,8 +36,7 @@ Feeling inspired by the coming Christmas season (and a little bit of Polar Expre
 [![Screenshot-2023-12-05-225640-removebg-preview.png](https://i.postimg.cc/HxRSF49G/Screenshot-2023-12-05-225640-removebg-preview.png)](https://postimg.cc/2bdFZWtT)
 ## Building the Monster Train
 ## Parts List
-<br> 
-- LPC1768 mbed Microcontroller
+<br> - LPC1768 mbed Microcontroller
 <br> - Breadboard
 <br> - Breadboard wires (as needed)
 <br> - Adafruit VL53L0X TOF sensor
