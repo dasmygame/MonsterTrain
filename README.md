@@ -48,5 +48,7 @@ Feeling inspired by the coming Christmas season (and a little bit of Polar Expre
 <br> - 1 green LED
 <br> - 1 RGB LED
 
-## Vehicle Base and Enclosure
-Include here 3d model files and any specific settings needed for the print, not much needed here
+## Vehicle Base and Enclosure Video Demo
+
+https://github.com/dasmygame/MonsterTrain/assets/48290252/c7899ea9-2cd0-4a56-8772-985204abce64
+
