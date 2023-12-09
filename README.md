@@ -54,6 +54,8 @@ The Train design was split into 2 parts, the drive train and the shell top enclo
 * 1x Adafruit Bluetooth LE UART Friend
 * 1x SparkFun Mono Audio Amp Breakout
 * 1x PRT-20660 Through-Hole speaker
+  
+<img width="384" alt="Screen Shot 2023-12-08 at 10 07 46 PM" src="https://github.com/dasmygame/MonsterTrain/assets/41347340/cf384f6b-2967-44dd-b1ad-6c03412956e4">
 
 ####  LED Connections
 | mbed Pin # | LED |
