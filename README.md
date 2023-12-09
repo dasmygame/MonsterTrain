@@ -68,7 +68,40 @@ The Train design was split into 2 parts, the drive train and the shell top enclo
 
 A 1k resistor should be placed in series in between the mbed and the LED.
 
-#### 
+#### uLCD-144-G2 Connections 
+| mbed Pin # | uLCD pin |
+| --- | --- |
+| p9 | tx |
+| p10 | rx | 
+| p11 | res |
+
+#### SD Card Reader Connections
+| mbed Pin # | SD card reader |
+| --- | --- |
+| p5 | DI | 
+| p6 | DO | 
+| p7 | sck |
+| p8 | cs |
+
+#### Audio Amp Connections
+| Connection | Class D Audio Amp |
+| --- | --- |
+| mbed p18 | in+ |
+| gnd | pwr-, in- |
+| 5v battery + | pwr+ |
+
+#### Motor Connections
+| Connection | H-Bridge |
+| --- | --- |
+| mbed p23 | pwma |
+| p16 | AI1 |
+| p17 | AI2 |
+| motor1 + | AO1 |
+| motor1 - | AO2 |
+| motor2 + | BO1 | 
+| motor2 - | BO2 |
+| 5V | Vin |
+| 5V | STBY |  
 
 
 
