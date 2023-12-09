@@ -63,7 +63,7 @@ The Train design was split into 2 parts, the drive train and the shell top enclo
 | p22 | RGB Blue |
 | p21 | Red LED |
 | p12 | Green LED |
-| --- | --- |
+
 A 1k resistor should be placed in series in between the mbed and the LED.
 
 #### 
