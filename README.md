@@ -55,6 +55,20 @@ The Train design was split into 2 parts, the drive train and the shell top enclo
 * 1x SparkFun Mono Audio Amp Breakout
 * 1x PRT-20660 Through-Hole speaker
 
+####  LED Connections
+| mbed Pin # | LED |
+| --- | --- |
+| p26 | RGB Red |
+| p25 | RGB Green |
+| p22 | RGB Blue |
+| p21 | Red LED |
+| p12 | Green LED |
+A 1k resistor should be placed in series in between the mbed and the LED.
+
+#### 
+
+
+
 ## Software
 This project makes uses of the mbed RTOS for multi threading support. Each feature is given its own thread.
 ### uLCD thread
