@@ -302,4 +302,5 @@ https://github.com/dasmygame/MonsterTrain/assets/48290252/c7899ea9-2cd0-4a56-877
 
 <img width="319" alt="Screen Shot 2023-12-08 at 10 09 09 PM" src="https://github.com/dasmygame/MonsterTrain/assets/41347340/ca92155e-cc23-49df-8c8e-c46239568d65">
 
+<img width="259" alt="Screen Shot 2023-12-08 at 10 09 53 PM" src="https://github.com/dasmygame/MonsterTrain/assets/41347340/d716bd51-4f1c-4edf-9b84-9dcc93654444">
 
