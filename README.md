@@ -89,6 +89,8 @@ A 1k resistor should be placed in series in between the mbed and the LED.
 | mbed p18 | in+ |
 | gnd | pwr-, in- |
 | 5v battery + | pwr+ |
+| speaker + | out + |
+| speaker - | out - |
 
 #### Motor Connections
 | Connection | H-Bridge |
