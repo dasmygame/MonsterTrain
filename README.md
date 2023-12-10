@@ -1,9 +1,9 @@
 # ECE 4180-B Fall 2023 Final Project
 Developed by:
-<br> Puneet Bansal,
-<br> Jordan Beiler,
-<br> Rahul Das, &
-<br> Benedict Pursell 
+<br> Puneet Bansal (B),
+<br> Jordan Beiler (B),
+<br> Rahul Das (A), &
+<br> Benedict Pursell (B)
 
 ## Project Idea
 Feeling inspired by the coming Christmas season (and a little bit of Polar Express), our project is a winter-themed Monster truck-train hybrid: the Monster Train. The Monster Train is a remote controller vehicle that can be piloted over bluetooth user the user's cell phone and has a handful of fun features including:
